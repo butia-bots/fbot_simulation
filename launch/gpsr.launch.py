@@ -70,8 +70,8 @@ def generate_launch_description():
     )
     hardware_type = DeclareLaunchArgument('hardware_type', default_value='gz_classic')
 
-    small_house_package = get_package_share_directory('aws_robomaker_small_house_world')
-    world_path = DeclareLaunchArgument('world_file_path', default_value=os.path.join(small_house_package, 'worlds', 'small_house.world'))
+    simulation_package = get_package_share_directory('fbot_simulation')
+    world_path = DeclareLaunchArgument('world_file_path', default_value=os.path.join(simulation_package, 'worlds', 'arena_env.world'))
     boris_description_package = get_package_share_directory('boris_description')
     robot_model = DeclareLaunchArgument(
             'robot_model',
@@ -95,11 +95,13 @@ def generate_launch_description():
             'hardware_type': LaunchConfiguration('hardware_type'),
         }.items()
     )
-    navigation_package = get_package_share_directory('fbot_navigation')
-    navigation = launch.actions.IncludeLaunchDescription(
-        launch.launch_description_sources.PythonLaunchDescriptionSource(
-            os.path.join(navigation_package, 'launch', 'navigation.launch.py')
-        )
+    navigation = IncludeLaunchDescription(
+        PythonLaunchDescriptionSource(os.path.join(get_package_share_directory('nav2_bringup'), 'launch', 'bringup_launch.py')),
+        launch_arguments={
+            'autostart': 'true',
+            'map': os.path.join(get_package_share_directory('fbot_navigation'), 'maps', 'arena_env.yaml'),
+            'slam': 'False',
+        }.items()
     )
     cmd_vel_relay = Node(
         package='topic_tools',
@@ -114,7 +116,7 @@ def generate_launch_description():
         executable='relay',
         name='relay_odom',
         arguments=[
-            '/wx200/odom', '/hoverboard_base_controller/odom'
+            '/wx200/odom', '/odom'
         ]
     )
     description_relay = Node(
@@ -133,4 +135,12 @@ def generate_launch_description():
             '/lms1xx/scan', '/scan'
         ]
     )
-    return LaunchDescription([gz_resource_path_env_var, gz_model_uri_env_var, hardware_type, use_world_frame, external_urdf_loc, robot_model, world_path, moveit_simulation, cmd_vel_relay, odom_relay, description_relay, scan_relay])
+    static_transform = Node(
+        package='tf2_ros',
+        executable='static_transform_publisher',
+        name='static_transform_publisher',
+        arguments=[
+            '0', '0', '0', '0', '0', '0', 'map', 'odom'
+        ]
+    )
+    return LaunchDescription([gz_resource_path_env_var, gz_model_uri_env_var, hardware_type, use_world_frame, external_urdf_loc, robot_model, world_path, moveit_simulation, cmd_vel_relay, odom_relay, description_relay, scan_relay, static_transform, navigation])
