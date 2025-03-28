@@ -13,8 +13,6 @@ setup(
         ('share/' + package_name, ['package.xml']),
         ('share/' + package_name + '/launch', ['launch/gpsr.launch.py']),
         ('share/' + package_name + '/urdf', ['urdf/boris.urdf']),
-        ('share/' + package_name + '/materials/textures', ['materials/textures/parede.png']),
-        ('share/' + package_name + '/meshes', glob('meshes/*')),
         ('share/' + package_name + '/worlds', glob('worlds/*')),
     ],
     install_requires=['setuptools'],
