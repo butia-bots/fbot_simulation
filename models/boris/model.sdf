@@ -1,0 +1,1555 @@
+<?xml version='1.0' encoding='utf-8'?>
+<sdf version="1.7">
+  <model name="boris" static="false">
+    <link name="base_footprint" />
+    <link name="base_link">
+      <inertial>
+        <mass>1</mass>
+        <inertia>
+          <ixx>0.009360416666666668</ixx>
+          <ixy>0.0</ixy>
+          <ixz>0.0</ixz>
+          <iyy>0.030185416666666666</iyy>
+          <iyz>0.0</iyz>
+          <izz>0.020841666666666665</izz>
+        </inertia>
+      </inertial>
+      <visual name="base_link_visual">
+        <geometry>
+          <box>
+            <size>0.5 0.335 0.235</size>
+          </box>
+        </geometry>
+        <material />
+      </visual>
+      <collision name="base_link_collision">
+        <geometry>
+          <box>
+            <size>0.5 0.335 0.235</size>
+          </box>
+        </geometry>
+      </collision>
+    </link>
+    <link name="left_wheel">
+      <inertial>
+        <mass>10</mass>
+        <inertia>
+          <ixx>0.017098958333333334</ixx>
+          <ixy>0</ixy>
+          <ixz>0</ixz>
+          <iyy>0.017098958333333334</iyy>
+          <iyz>0</iyz>
+          <izz>0.03003125</izz>
+        </inertia>
+      </inertial>
+      <visual name="left_wheel_visual">
+        <pose>0 0 0 1.5707963267948966 0 0</pose>
+        <geometry>
+          <cylinder>
+            <radius>0.0775</radius>
+            <length>0.06</length>
+          </cylinder>
+        </geometry>
+        <material />
+      </visual>
+      <collision name="left_wheel_collision">
+        <pose>0 0 0 1.5707963267948966 0 0</pose>
+        <geometry>
+          <cylinder>
+            <radius>0.0775</radius>
+            <length>0.05</length>
+          </cylinder>
+        </geometry>
+      </collision>
+    </link>
+    <link name="right_wheel">
+      <inertial>
+        <mass>10</mass>
+        <inertia>
+          <ixx>0.017098958333333334</ixx>
+          <ixy>0</ixy>
+          <ixz>0</ixz>
+          <iyy>0.017098958333333334</iyy>
+          <iyz>0</iyz>
+          <izz>0.03003125</izz>
+        </inertia>
+      </inertial>
+      <visual name="right_wheel_visual">
+        <pose>0 0 0 1.5707963267948966 0 0</pose>
+        <geometry>
+          <cylinder>
+            <radius>0.0775</radius>
+            <length>0.06</length>
+          </cylinder>
+        </geometry>
+        <material />
+      </visual>
+      <collision name="right_wheel_collision">
+        <pose>0 0 0 1.5707963267948966 0 0</pose>
+        <geometry>
+          <cylinder>
+            <radius>0.0775</radius>
+            <length>0.05</length>
+          </cylinder>
+        </geometry>
+      </collision>
+    </link>
+    <link name="caster_wheel">
+      <inertial>
+        <mass>5</mass>
+        <inertia>
+          <ixx>0.0008</ixx>
+          <ixy>0.0</ixy>
+          <ixz>0.0</ixz>
+          <iyy>0.0008</iyy>
+          <iyz>0.0</iyz>
+          <izz>0.0008</izz>
+        </inertia>
+      </inertial>
+      <visual name="caster_wheel_visual">
+        <pose>0 0 0 0 0 0</pose>
+        <geometry>
+          <sphere>
+            <radius>0.02</radius>
+          </sphere>
+        </geometry>
+        <material />
+      </visual>
+      <collision name="caster_wheel_collision">
+        <pose>0 0 0 0 0 0</pose>
+        <geometry>
+          <sphere>
+            <radius>0.02</radius>
+          </sphere>
+        </geometry>
+      </collision>
+    </link>
+    <link name="head_link">
+      <inertial>
+        <mass>0.001</mass>
+        <inertia>
+          <ixx>0.001</ixx>
+          <ixy>0</ixy>
+          <ixz>0</ixz>
+          <iyy>0.001</iyy>
+          <iyz>0</iyz>
+          <izz>0.001</izz>
+        </inertia>
+      </inertial>
+      <visual name="head">
+        <pose>-0.02248 -0.11374 -0.02141 1.5708 0 0</pose>
+        <geometry>
+          <mesh>
+            <uri>package://boris_head_description/meshes/dae/Cube.001.dae</uri>
+            <scale>0.001 0.001 0.001</scale>
+          </mesh>
+        </geometry>
+        <material />
+      </visual>
+    </link>
+    <link name="jaw_link">
+      <inertial>
+        <mass>0.001</mass>
+        <inertia>
+          <ixx>0.001</ixx>
+          <ixy>0</ixy>
+          <ixz>0</ixz>
+          <iyy>0.001</iyy>
+          <iyz>0</iyz>
+          <izz>0.001</izz>
+        </inertia>
+      </inertial>
+      <visual name="jaw">
+        <pose>0.05463 0.06043 -0.08008 1.5708 0 0</pose>
+        <geometry>
+          <mesh>
+            <uri>package://boris_head_description/meshes/dae/Plane.012.dae</uri>
+            <scale>0.001 0.001 0.001</scale>
+          </mesh>
+        </geometry>
+        <material />
+      </visual>
+    </link>
+    <link name="left_eye_horizontal_link">
+      <inertial>
+        <mass>0.001</mass>
+        <inertia>
+          <ixx>0.001</ixx>
+          <ixy>0</ixy>
+          <ixz>0</ixz>
+          <iyy>0.001</iyy>
+          <iyz>0</iyz>
+          <izz>0.001</izz>
+        </inertia>
+      </inertial>
+    </link>
+    <link name="left_eye_vertical_link">
+      <inertial>
+        <mass>0.001</mass>
+        <inertia>
+          <ixx>0.001</ixx>
+          <ixy>0</ixy>
+          <ixz>0</ixz>
+          <iyy>0.001</iyy>
+          <iyz>0</iyz>
+          <izz>0.001</izz>
+        </inertia>
+      </inertial>
+      <visual name="left_eye">
+        <pose>0 0 0 -1.5708 0 0</pose>
+        <geometry>
+          <mesh>
+            <uri>package://boris_head_description/meshes/dae/Cube.002.dae</uri>
+            <scale>0.001 0.001 0.001</scale>
+          </mesh>
+        </geometry>
+        <material />
+      </visual>
+    </link>
+    <link name="left_inferior_eyelid_link">
+      <inertial>
+        <mass>0.001</mass>
+        <inertia>
+          <ixx>0.001</ixx>
+          <ixy>0</ixy>
+          <ixz>0</ixz>
+          <iyy>0.001</iyy>
+          <iyz>0</iyz>
+          <izz>0.001</izz>
+        </inertia>
+      </inertial>
+      <visual name="left_inferior_eyelid">
+        <pose>0.00498 -0.01247 -0.02356 -1.56706 -0.06102 -0.06125</pose>
+        <geometry>
+          <mesh>
+            <uri>package://boris_head_description/meshes/dae/Plane.015.dae</uri>
+            <scale>0.001 0.001 0.001</scale>
+          </mesh>
+        </geometry>
+        <material />
+      </visual>
+    </link>
+    <link name="left_rotacional_eyebrow_link">
+      <inertial>
+        <mass>0.001</mass>
+        <inertia>
+          <ixx>0.001</ixx>
+          <ixy>0</ixy>
+          <ixz>0</ixz>
+          <iyy>0.001</iyy>
+          <iyz>0</iyz>
+          <izz>0.001</izz>
+        </inertia>
+      </inertial>
+      <visual name="left_eyebrow">
+        <pose>0 0 0 0 0 0</pose>
+        <geometry>
+          <mesh>
+            <uri>package://boris_head_description/meshes/dae/Cylinder.004.dae</uri>
+            <scale>0.001 0.001 0.001</scale>
+          </mesh>
+        </geometry>
+        <material />
+      </visual>
+    </link>
+    <link name="left_superior_eyelid_link">
+      <inertial>
+        <mass>0.001</mass>
+        <inertia>
+          <ixx>0.001</ixx>
+          <ixy>0</ixy>
+          <ixz>0</ixz>
+          <iyy>0.001</iyy>
+          <iyz>0</iyz>
+          <izz>0.001</izz>
+        </inertia>
+      </inertial>
+      <visual name="left_superior_eyelid">
+        <pose>0.00551 -0.01216 -0.01543 1.5708 -0.06113 0</pose>
+        <geometry>
+          <mesh>
+            <uri>package://boris_head_description/meshes/dae/Plane.001.dae</uri>
+            <scale>0.001 0.001 0.001</scale>
+          </mesh>
+        </geometry>
+        <material />
+      </visual>
+    </link>
+    <link name="left_vertical_eyebrow_link">
+      <inertial>
+        <mass>0.001</mass>
+        <inertia>
+          <ixx>0.001</ixx>
+          <ixy>0</ixy>
+          <ixz>0</ixz>
+          <iyy>0.001</iyy>
+          <iyz>0</iyz>
+          <izz>0.001</izz>
+        </inertia>
+      </inertial>
+    </link>
+    <link name="neck_link">
+      <inertial>
+        <mass>0.001</mass>
+        <inertia>
+          <ixx>0.001</ixx>
+          <ixy>0</ixy>
+          <ixz>0</ixz>
+          <iyy>0.001</iyy>
+          <iyz>0</iyz>
+          <izz>0.001</izz>
+        </inertia>
+      </inertial>
+      <visual name="neck">
+        <pose>0 0 0 0 0 0</pose>
+        <geometry>
+          <mesh>
+            <uri>package://boris_head_description/meshes/dae/Cube.055.dae</uri>
+            <scale>0.01 0.01 0.01</scale>
+          </mesh>
+        </geometry>
+      </visual>
+    </link>
+    <link name="right_rotacional_eyebrow_link">
+      <inertial>
+        <mass>0.001</mass>
+        <inertia>
+          <ixx>0.001</ixx>
+          <ixy>0</ixy>
+          <ixz>0</ixz>
+          <iyy>0.001</iyy>
+          <iyz>0</iyz>
+          <izz>0.001</izz>
+        </inertia>
+      </inertial>
+      <visual name="right_eyebrow">
+        <pose>0 0 0 0 0 0</pose>
+        <geometry>
+          <mesh>
+            <uri>package://boris_head_description/meshes/dae/Cylinder.005.dae</uri>
+            <scale>0.001 0.001 0.001</scale>
+          </mesh>
+        </geometry>
+        <material />
+      </visual>
+    </link>
+    <link name="right_vertical_eyebrow_link">
+      <inertial>
+        <mass>0.001</mass>
+        <inertia>
+          <ixx>0.001</ixx>
+          <ixy>0</ixy>
+          <ixz>0</ixz>
+          <iyy>0.001</iyy>
+          <iyz>0</iyz>
+          <izz>0.001</izz>
+        </inertia>
+      </inertial>
+    </link>
+    <link name="right_eye_horizontal_link">
+      <inertial>
+        <mass>0.001</mass>
+        <inertia>
+          <ixx>0.001</ixx>
+          <ixy>0</ixy>
+          <ixz>0</ixz>
+          <iyy>0.001</iyy>
+          <iyz>0</iyz>
+          <izz>0.001</izz>
+        </inertia>
+      </inertial>
+    </link>
+    <link name="right_eye_vertical_link">
+      <inertial>
+        <mass>0.001</mass>
+        <inertia>
+          <ixx>0.001</ixx>
+          <ixy>0</ixy>
+          <ixz>0</ixz>
+          <iyy>0.001</iyy>
+          <iyz>0</iyz>
+          <izz>0.001</izz>
+        </inertia>
+      </inertial>
+      <visual name="right_eye">
+        <pose>0 0 0 -1.5708 0 0</pose>
+        <geometry>
+          <mesh>
+            <uri>package://boris_head_description/meshes/dae/Cube.007.dae</uri>
+            <scale>0.001 0.001 0.001</scale>
+          </mesh>
+        </geometry>
+        <material />
+      </visual>
+    </link>
+    <link name="right_inferior_eyelid_link">
+      <inertial>
+        <mass>0.001</mass>
+        <inertia>
+          <ixx>0.001</ixx>
+          <ixy>0</ixy>
+          <ixz>0</ixz>
+          <iyy>0.001</iyy>
+          <iyz>0</iyz>
+          <izz>0.001</izz>
+        </inertia>
+      </inertial>
+      <visual name="right_inferior_eyelid">
+        <pose>0.0038 -0.01141 -0.01966 -1.5708 0 0</pose>
+        <geometry>
+          <mesh>
+            <uri>package://boris_head_description/meshes/dae/Plane.013.dae</uri>
+            <scale>0.001 0.001 0.001</scale>
+          </mesh>
+        </geometry>
+        <material />
+      </visual>
+    </link>
+    <link name="right_superior_eyelid_link">
+      <inertial>
+        <mass>0.001</mass>
+        <inertia>
+          <ixx>0.001</ixx>
+          <ixy>0</ixy>
+          <ixz>0</ixz>
+          <iyy>0.001</iyy>
+          <iyz>0</iyz>
+          <izz>0.001</izz>
+        </inertia>
+      </inertial>
+      <visual name="right_superior_eyelid">
+        <pose>0.00701 -0.01106 -0.01469 1.5708 0 0.3358</pose>
+        <geometry>
+          <mesh>
+            <uri>package://boris_head_description/meshes/dae/Plane.014.dae</uri>
+            <scale>0.001 0.001 0.001</scale>
+          </mesh>
+        </geometry>
+        <material />
+      </visual>
+    </link>
+    <link name="head_root">
+      <inertial>
+        <mass>0.001</mass>
+        <inertia>
+          <ixx>0.001</ixx>
+          <ixy>0</ixy>
+          <ixz>0</ixz>
+          <iyy>0.001</iyy>
+          <iyz>0</iyz>
+          <izz>0.001</izz>
+        </inertia>
+      </inertial>
+    </link>
+    <link name="sick_link">
+      <inertial>
+        <mass>1e-5</mass>
+        <inertia>
+          <ixx>1e-6</ixx>
+          <ixy>1e-20</ixy>
+          <ixz>1e-20</ixz>
+          <iyy>1e-6</iyy>
+          <iyz>1e-20</iyz>
+          <izz>1e-6</izz>
+        </inertia>
+      </inertial>
+      <visual name="sick_link_visual">
+        <pose>0 0 0 0 0 0</pose>
+        <geometry>
+          <mesh>
+            <uri>package://sensors_description/meshes/sick-lms1xx.dae</uri>
+          </mesh>
+        </geometry>
+      </visual>
+    </link>
+    <link name="camera_turret_pan_link">
+      <inertial>
+        <mass>0.0182769203076134</mass>
+        <inertia>
+          <ixx>1.32243845065555E-05</ixx>
+          <ixy>5.07660179129181E-13</ixy>
+          <ixz>1.067515220067E-20</ixz>
+          <iyy>7.13386116649085E-06</iyy>
+          <iyz>-1.32882457845217E-20</iyz>
+          <izz>7.83291781352837E-06</izz>
+        </inertia>
+      </inertial>
+      <visual name="camera_turret_pan_link_visual">
+        <pose>0 0 0 0 0 0</pose>
+        <geometry>
+          <mesh>
+            <uri>package://sensors_description/meshes/tilt_link.STL</uri>
+          </mesh>
+        </geometry>
+        <material>
+          <ambient>0.250980392156863 0.250980392156863 0.250980392156863 1</ambient>
+          <diffuse>0.250980392156863 0.250980392156863 0.250980392156863 1</diffuse>
+          <specular>0.1 0.1 0.1 1</specular>
+          <emissive>0 0 0 0</emissive>
+        </material>
+      </visual>
+      <collision name="camera_turret_pan_link_collision">
+        <pose>0 0 0 0 0 0</pose>
+        <geometry>
+          <mesh>
+            <uri>package://sensors_description/meshes/tilt_link.STL</uri>
+          </mesh>
+        </geometry>
+      </collision>
+    </link>
+    <link name="camera_turret_tilt_link">
+      <inertial>
+        <mass>0.0547677687275323</mass>
+        <inertia>
+          <ixx>1.07071738005716E-05</ixx>
+          <ixy>-1.46854788384565E-07</ixy>
+          <ixz>5.59529059364376E-08</ixz>
+          <iyy>1.77011620295824E-05</iyy>
+          <iyz>1.27587154712834E-09</iyz>
+          <izz>2.01583693170578E-05</izz>
+        </inertia>
+      </inertial>
+      <visual name="camera_turret_tilt_link_visual">
+        <pose>0 0 0 0 0 0</pose>
+        <geometry>
+          <mesh>
+            <uri>package://sensors_description/meshes/roll_link.STL</uri>
+          </mesh>
+        </geometry>
+        <material>
+          <ambient>0.792156862745098 0.819607843137255 0.933333333333333 1</ambient>
+          <diffuse>0.792156862745098 0.819607843137255 0.933333333333333 1</diffuse>
+          <specular>0.1 0.1 0.1 1</specular>
+          <emissive>0 0 0 0</emissive>
+        </material>
+      </visual>
+      <collision name="camera_turret_tilt_link_collision">
+        <pose>0 0 0 0 0 0</pose>
+        <geometry>
+          <mesh>
+            <uri>package://sensors_description/meshes/roll_link.STL</uri>
+          </mesh>
+        </geometry>
+      </collision>
+    </link>
+    <link name="astra2_top_camera_base_link">
+      <visual name="astra2_top_camera_base_link_visual">
+        <pose>0 0 0 0 0 3.141592653589793</pose>
+        <geometry>
+          <mesh>
+            <uri>package://hector_models/meshes/orbbec_astra2/orbbec_astra2.dae</uri>
+          </mesh>
+        </geometry>
+      </visual>
+      <collision name="astra2_top_camera_base_link_collision">
+        <pose>0.018 0 0 0 0 0</pose>
+        <geometry>
+          <box>
+            <size>0.037 0.147 0.035</size>
+          </box>
+        </geometry>
+      </collision>
+    </link>
+    <link name="astra2_top_camera_link" />
+    <link name="astra2_top_camera_optical_frame" />
+    <link name="dorso_link">
+      <inertial>
+        <mass>1</mass>
+        <inertia>
+          <ixx>0.04877708333333333</ixx>
+          <ixy>0.0</ixy>
+          <ixz>0.0</ixz>
+          <iyy>0.05828908333333333</iyy>
+          <iyz>0.0</iyz>
+          <izz>0.009528666666666668</izz>
+        </inertia>
+      </inertial>
+      <visual name="dorso_link_visual">
+        <pose>0.0 0.0 0.3825 0 0 0</pose>
+        <geometry>
+          <box>
+            <size>0.282 0.338 0.765</size>
+          </box>
+        </geometry>
+        <material />
+      </visual>
+      <collision name="dorso_link_collision">
+        <pose>0.0 0.0 0.3825 0 0 0</pose>
+        <geometry>
+          <box>
+            <size>0.282 0.338 0.765</size>
+          </box>
+        </geometry>
+      </collision>
+    </link>
+    <link name="arm_support_link">
+      <inertial>
+        <mass>1</mass>
+        <inertia>
+          <ixx>0.00019241666666666664</ixx>
+          <ixy>0.0</ixy>
+          <ixz>0.0</ixz>
+          <iyy>0.009592083333333334</iyy>
+          <iyz>0.0</iyz>
+          <izz>0.009416333333333334</izz>
+        </inertia>
+      </inertial>
+      <visual name="arm_support_link_visual">
+        <geometry>
+          <box>
+            <size>0.325 0.336 0.047</size>
+          </box>
+        </geometry>
+        <material />
+      </visual>
+      <collision name="arm_support_link_collision">
+        <geometry>
+          <box>
+            <size>0.325 0.336 0.047</size>
+          </box>
+        </geometry>
+      </collision>
+    </link>
+    <link name="hokuyo_ground_link">
+      <inertial>
+        <mass>1e-5</mass>
+        <inertia>
+          <ixx>1e-6</ixx>
+          <ixy>0</ixy>
+          <ixz>0</ixz>
+          <iyy>1e-6</iyy>
+          <iyz>0</iyz>
+          <izz>1e-6</izz>
+        </inertia>
+      </inertial>
+      <visual name="hokuyo_ground_link_visual">
+        <pose>0 0 0 0 0 0</pose>
+        <geometry>
+          <mesh>
+            <uri>package://sensors_description/meshes/hokuyo.dae</uri>
+          </mesh>
+        </geometry>
+      </visual>
+    </link>
+    <link name="hokuyo_back_link">
+      <inertial>
+        <mass>1e-5</mass>
+        <inertia>
+          <ixx>1e-6</ixx>
+          <ixy>0</ixy>
+          <ixz>0</ixz>
+          <iyy>1e-6</iyy>
+          <iyz>0</iyz>
+          <izz>1e-6</izz>
+        </inertia>
+      </inertial>
+      <visual name="hokuyo_back_link_visual">
+        <pose>0 0 0 0 0 0</pose>
+        <geometry>
+          <mesh>
+            <uri>package://sensors_description/meshes/hokuyo.dae</uri>
+          </mesh>
+        </geometry>
+      </visual>
+    </link>
+    <link name="imu_link" />
+    <link name="astra2_wrist_camera_base_link">
+      <visual name="astra2_wrist_camera_base_link_visual">
+        <pose>0 0 0 0 0 3.141592653589793</pose>
+        <geometry>
+          <mesh>
+            <uri>package://hector_models/meshes/orbbec_astra2/orbbec_astra2.dae</uri>
+          </mesh>
+        </geometry>
+      </visual>
+      <collision name="astra2_wrist_camera_base_link_collision">
+        <pose>0.018 0 0 0 0 0</pose>
+        <geometry>
+          <box>
+            <size>0.037 0.147 0.035</size>
+          </box>
+        </geometry>
+      </collision>
+    </link>
+    <link name="astra2_wrist_camera_link" />
+    <link name="astra2_wrist_camera_optical_frame" />
+    <link name="wx200/base_link">
+      <inertial>
+        <mass>0.540142</mass>
+        <inertia>
+          <ixx>0.0021190000</ixx>
+          <ixy>-0.0000172100</ixy>
+          <ixz>0.0000006389</ixz>
+          <iyy>0.0006925000</iyy>
+          <iyz>0.0000461200</iyz>
+          <izz>0.0025280000</izz>
+        </inertia>
+      </inertial>
+      <visual name="wx200/base_link_visual">
+        <pose>0 0 0 0 0 1.5707963267948966</pose>
+        <geometry>
+          <mesh>
+            <uri>package://interbotix_xsarm_descriptions/meshes/wx200_meshes/base.stl</uri>
+            <scale>0.001 0.001 0.001</scale>
+          </mesh>
+        </geometry>
+        <material />
+      </visual>
+      <collision name="wx200/base_link_collision">
+        <pose>0 0 0 0 0 1.5707963267948966</pose>
+        <geometry>
+          <mesh>
+            <uri>package://interbotix_xsarm_descriptions/meshes/wx200_meshes/base.stl</uri>
+            <scale>0.001 0.001 0.001</scale>
+          </mesh>
+        </geometry>
+      </collision>
+    </link>
+    <link name="wx200/shoulder_link">
+      <inertial>
+        <mass>0.480879</mass>
+        <inertia>
+          <ixx>0.0003790000</ixx>
+          <ixy>0.0000000022</ixy>
+          <ixz>-0.0000003561</ixz>
+          <iyy>0.0005557000</iyy>
+          <iyz>0.0000012247</iyz>
+          <izz>0.0005889000</izz>
+        </inertia>
+      </inertial>
+      <visual name="wx200/shoulder_link_visual">
+        <pose>0 0 -0.003 0 0 1.5707963267948966</pose>
+        <geometry>
+          <mesh>
+            <uri>package://interbotix_xsarm_descriptions/meshes/wx200_meshes/shoulder.stl</uri>
+            <scale>0.001 0.001 0.001</scale>
+          </mesh>
+        </geometry>
+        <material />
+      </visual>
+      <collision name="wx200/shoulder_link_collision">
+        <pose>0 0 -0.003 0 0 1.5707963267948966</pose>
+        <geometry>
+          <mesh>
+            <uri>package://interbotix_xsarm_descriptions/meshes/wx200_meshes/shoulder.stl</uri>
+            <scale>0.001 0.001 0.001</scale>
+          </mesh>
+        </geometry>
+      </collision>
+    </link>
+    <link name="wx200/upper_arm_link">
+      <inertial>
+        <mass>0.297781</mass>
+        <inertia>
+          <ixx>0.0017100000</ixx>
+          <ixy>-0.0000011433</ixy>
+          <ixz>0.0000021161</ixz>
+          <iyy>0.0016310000</iyy>
+          <iyz>0.0002135000</iyz>
+          <izz>0.0001482000</izz>
+        </inertia>
+      </inertial>
+      <visual name="wx200/upper_arm_link_visual">
+        <pose>0 0 0 0 0 1.5707963267948966</pose>
+        <geometry>
+          <mesh>
+            <uri>package://interbotix_xsarm_descriptions/meshes/wx200_meshes/upper_arm.stl</uri>
+            <scale>0.001 0.001 0.001</scale>
+          </mesh>
+        </geometry>
+        <material />
+      </visual>
+      <collision name="wx200/upper_arm_link_collision">
+        <pose>0 0 0 0 0 1.5707963267948966</pose>
+        <geometry>
+          <mesh>
+            <uri>package://interbotix_xsarm_descriptions/meshes/wx200_meshes/upper_arm.stl</uri>
+            <scale>0.001 0.001 0.001</scale>
+          </mesh>
+        </geometry>
+      </collision>
+    </link>
+    <link name="wx200/forearm_link">
+      <inertial>
+        <mass>0.283651</mass>
+        <inertia>
+          <ixx>0.0011850000</ixx>
+          <ixy>-0.0000024317</ixy>
+          <ixz>0.0000000000</ixz>
+          <iyy>0.0000682900</iyy>
+          <iyz>0.0000000000</iyz>
+          <izz>0.0012060000</izz>
+        </inertia>
+      </inertial>
+      <visual name="wx200/forearm_link_visual">
+        <pose>0 0 0 0 0 1.5707963267948966</pose>
+        <geometry>
+          <mesh>
+            <uri>package://interbotix_xsarm_descriptions/meshes/wx200_meshes/forearm.stl</uri>
+            <scale>0.001 0.001 0.001</scale>
+          </mesh>
+        </geometry>
+        <material />
+      </visual>
+      <collision name="wx200/forearm_link_collision">
+        <pose>0 0 0 0 0 1.5707963267948966</pose>
+        <geometry>
+          <mesh>
+            <uri>package://interbotix_xsarm_descriptions/meshes/wx200_meshes/forearm.stl</uri>
+            <scale>0.001 0.001 0.001</scale>
+          </mesh>
+        </geometry>
+      </collision>
+    </link>
+    <link name="wx200/wrist_link">
+      <inertial>
+        <mass>0.084957</mass>
+        <inertia>
+          <ixx>0.0000308200</ixx>
+          <ixy>0.0000000191</ixy>
+          <ixz>0.0000000023</ixz>
+          <iyy>0.0000282200</iyy>
+          <iyz>0.0000025481</iyz>
+          <izz>0.0000315200</izz>
+        </inertia>
+      </inertial>
+      <visual name="wx200/wrist_link_visual">
+        <pose>0 0 0 0 0 1.5707963267948966</pose>
+        <geometry>
+          <mesh>
+            <uri>package://interbotix_xsarm_descriptions/meshes/wx200_meshes/wrist.stl</uri>
+            <scale>0.001 0.001 0.001</scale>
+          </mesh>
+        </geometry>
+        <material />
+      </visual>
+      <collision name="wx200/wrist_link_collision">
+        <pose>0 0 0 0 0 1.5707963267948966</pose>
+        <geometry>
+          <mesh>
+            <uri>package://interbotix_xsarm_descriptions/meshes/wx200_meshes/wrist.stl</uri>
+            <scale>0.001 0.001 0.001</scale>
+          </mesh>
+        </geometry>
+      </collision>
+    </link>
+    <link name="wx200/gripper_link">
+      <inertial>
+        <mass>0.072885</mass>
+        <inertia>
+          <ixx>0.0000253700</ixx>
+          <ixy>0.0000000000</ixy>
+          <ixz>0.0000000000</ixz>
+          <iyy>0.0000183600</iyy>
+          <iyz>0.0000004340</iyz>
+          <izz>0.0000167400</izz>
+        </inertia>
+      </inertial>
+      <visual name="wx200/gripper_link_visual">
+        <pose>-0.02 0 0 0 0 1.5707963267948966</pose>
+        <geometry>
+          <mesh>
+            <uri>package://interbotix_xsarm_descriptions/meshes/wx200_meshes/gripper.stl</uri>
+            <scale>0.001 0.001 0.001</scale>
+          </mesh>
+        </geometry>
+        <material />
+      </visual>
+      <collision name="wx200/gripper_link_collision">
+        <pose>-0.02 0 0 0 0 1.5707963267948966</pose>
+        <geometry>
+          <mesh>
+            <uri>package://interbotix_xsarm_descriptions/meshes/wx200_meshes/gripper.stl</uri>
+            <scale>0.001 0.001 0.001</scale>
+          </mesh>
+        </geometry>
+      </collision>
+    </link>
+    <link name="wx200/ee_arm_link">
+      <inertial>
+        <mass>0.001</mass>
+        <inertia>
+          <ixx>0.001</ixx>
+          <ixy>0</ixy>
+          <ixz>0</ixz>
+          <iyy>0.001</iyy>
+          <iyz>0</iyz>
+          <izz>0.001</izz>
+        </inertia>
+      </inertial>
+    </link>
+    <link name="wx200/gripper_prop_link">
+      <inertial>
+        <mass>0.00434</mass>
+        <inertia>
+          <ixx>0.0000005923</ixx>
+          <ixy>0.0000000000</ixy>
+          <ixz>0.0000003195</ixz>
+          <iyy>0.0000011156</iyy>
+          <iyz>-0.0000000004</iyz>
+          <izz>0.0000005743</izz>
+        </inertia>
+      </inertial>
+      <visual name="wx200/gripper_prop_link_visual">
+        <pose>-0.0685 0 0 0 0 1.5707963267948966</pose>
+        <geometry>
+          <mesh>
+            <uri>package://interbotix_xsarm_descriptions/meshes/wx200_meshes/gripper_prop.stl</uri>
+            <scale>0.001 0.001 0.001</scale>
+          </mesh>
+        </geometry>
+        <material />
+      </visual>
+      <collision name="wx200/gripper_prop_link_collision">
+        <pose>-0.0685 0 0 0 0 1.5707963267948966</pose>
+        <geometry>
+          <mesh>
+            <uri>package://interbotix_xsarm_descriptions/meshes/wx200_meshes/gripper_prop.stl</uri>
+            <scale>0.001 0.001 0.001</scale>
+          </mesh>
+        </geometry>
+      </collision>
+    </link>
+    <link name="wx200/gripper_bar_link">
+      <inertial>
+        <mass>0.034199</mass>
+        <inertia>
+          <ixx>0.0000074125</ixx>
+          <ixy>-0.0000000008</ixy>
+          <ixz>-0.0000000006</ixz>
+          <iyy>0.0000284300</iyy>
+          <iyz>-0.0000013889</iyz>
+          <izz>0.0000286000</izz>
+        </inertia>
+      </inertial>
+      <visual name="wx200/gripper_bar_link_visual">
+        <pose>-0.063 0 0 0 0 1.5707963267948966</pose>
+        <geometry>
+          <mesh>
+            <uri>package://interbotix_xsarm_descriptions/meshes/wx200_meshes/gripper_bar.stl</uri>
+            <scale>0.001 0.001 0.001</scale>
+          </mesh>
+        </geometry>
+        <material />
+      </visual>
+      <collision name="wx200/gripper_bar_link_collision">
+        <pose>-0.063 0 0 0 0 1.5707963267948966</pose>
+        <geometry>
+          <mesh>
+            <uri>package://interbotix_xsarm_descriptions/meshes/wx200_meshes/gripper_bar.stl</uri>
+            <scale>0.001 0.001 0.001</scale>
+          </mesh>
+        </geometry>
+      </collision>
+    </link>
+    <link name="wx200/fingers_link">
+      <inertial>
+        <mass>0.001</mass>
+        <inertia>
+          <ixx>0.001</ixx>
+          <ixy>0</ixy>
+          <ixz>0</ixz>
+          <iyy>0.001</iyy>
+          <iyz>0</iyz>
+          <izz>0.001</izz>
+        </inertia>
+      </inertial>
+    </link>
+    <link name="wx200/left_finger_link">
+      <inertial>
+        <mass>0.016246</mass>
+        <inertia>
+          <ixx>0.0000047310</ixx>
+          <ixy>-0.0000004560</ixy>
+          <ixz>0.0000000000</ixz>
+          <iyy>0.0000015506</iyy>
+          <iyz>0.0000000000</iyz>
+          <izz>0.0000037467</izz>
+        </inertia>
+      </inertial>
+      <visual name="wx200/left_finger_link_visual">
+        <pose>0 0.005 0 3.141592653589793 3.141592653589793 0</pose>
+        <geometry>
+          <mesh>
+            <uri>package://interbotix_xsarm_descriptions/meshes/wx200_meshes/gripper_finger.stl</uri>
+            <scale>0.001 0.001 0.001</scale>
+          </mesh>
+        </geometry>
+        <material />
+      </visual>
+      <collision name="wx200/left_finger_link_collision">
+        <pose>0 0.005 0 3.141592653589793 3.141592653589793 0</pose>
+        <geometry>
+          <mesh>
+            <uri>package://interbotix_xsarm_descriptions/meshes/wx200_meshes/gripper_finger.stl</uri>
+            <scale>0.001 0.001 0.001</scale>
+          </mesh>
+        </geometry>
+      </collision>
+    </link>
+    <link name="wx200/right_finger_link">
+      <inertial>
+        <mass>0.016246</mass>
+        <inertia>
+          <ixx>0.0000047310</ixx>
+          <ixy>0.0000004560</ixy>
+          <ixz>0.0000000000</ixz>
+          <iyy>0.0000015506</iyy>
+          <iyz>0.0000000000</iyz>
+          <izz>0.0000037467</izz>
+        </inertia>
+      </inertial>
+      <visual name="wx200/right_finger_link_visual">
+        <pose>0 -0.005 0 0 3.141592653589793 0</pose>
+        <geometry>
+          <mesh>
+            <uri>package://interbotix_xsarm_descriptions/meshes/wx200_meshes/gripper_finger.stl</uri>
+            <scale>0.001 0.001 0.001</scale>
+          </mesh>
+        </geometry>
+        <material />
+      </visual>
+      <collision name="wx200/right_finger_link_collision">
+        <pose>0 -0.005 0 0 3.141592653589793 0</pose>
+        <geometry>
+          <mesh>
+            <uri>package://interbotix_xsarm_descriptions/meshes/wx200_meshes/gripper_finger.stl</uri>
+            <scale>0.001 0.001 0.001</scale>
+          </mesh>
+        </geometry>
+      </collision>
+    </link>
+    <link name="wx200/ee_gripper_link">
+      <inertial>
+        <mass>0.001</mass>
+        <inertia>
+          <ixx>0.001</ixx>
+          <ixy>0</ixy>
+          <ixz>0</ixz>
+          <iyy>0.001</iyy>
+          <iyz>0</iyz>
+          <izz>0.001</izz>
+        </inertia>
+      </inertial>
+    </link>
+    <joint name="base_link_joint" type="fixed">
+      <parent>base_footprint</parent>
+      <child>base_link</child>
+      <pose>0 0 0.1875 0 0 0</pose>
+    </joint>
+    <joint name="left_wheel_joint" type="continuous">
+      <parent>base_link</parent>
+      <child>left_wheel</child>
+      <axis>
+        <xyz>0 1 0</xyz>
+      </axis>
+      <pose>0.0 0.21750000000000003 -0.11 0 0 0</pose>
+    </joint>
+    <joint name="right_wheel_joint" type="continuous">
+      <parent>base_link</parent>
+      <child>right_wheel</child>
+      <axis>
+        <xyz>0 1 0</xyz>
+      </axis>
+      <pose>0.0 -0.21750000000000003 -0.11 0 0 0</pose>
+    </joint>
+    <joint name="caster_wheel_joint" type="continuous">
+      <parent>base_link</parent>
+      <child>caster_wheel</child>
+      <axis>
+        <xyz>0 1 0</xyz>
+      </axis>
+      <pose>0.25 0 -0.16749999999999998 0 0 0</pose>
+    </joint>
+    <joint name="horizontal_neck_joint" type="revolute">
+      <parent>head_root</parent>
+      <child>neck_link</child>
+      <axis>
+        <xyz>0 0 1.0</xyz>
+        <limit>
+          <lower>-0.86</lower>
+          <upper>0.86</upper>
+          <effort>1.0</effort>
+          <velocity>10</velocity>
+        </limit>
+      </axis>
+      <pose>0 0 0 0 0 1.5708</pose>
+    </joint>
+    <joint name="jaw_joint" type="revolute">
+      <parent>head_link</parent>
+      <child>jaw_link</child>
+      <axis>
+        <xyz>0 0 1.0</xyz>
+        <limit>
+          <lower>0</lower>
+          <upper>0.5</upper>
+          <effort>1.0</effort>
+          <velocity>10</velocity>
+        </limit>
+      </axis>
+      <pose>0.00668 -0.10888 0.05845 0 0 0</pose>
+    </joint>
+    <joint name="left_eye_horizontal_joint" type="revolute">
+      <parent>head_link</parent>
+      <child>left_eye_horizontal_link</child>
+      <axis>
+        <xyz>0 0 1.0</xyz>
+        <limit>
+          <lower>-0.27453</lower>
+          <upper>0.7854</upper>
+          <effort>1.0</effort>
+          <velocity>10</velocity>
+        </limit>
+      </axis>
+      <pose>0.09352 -0.08739 -0.05892 1.5708 0 0</pose>
+    </joint>
+    <joint name="left_eye_vertical_joint" type="revolute">
+      <parent>left_eye_horizontal_link</parent>
+      <child>left_eye_vertical_link</child>
+      <axis>
+        <xyz>0 0 1.0</xyz>
+        <limit>
+          <lower>-0.17453</lower>
+          <upper>0.7854</upper>
+          <effort>1.0</effort>
+          <velocity>10</velocity>
+        </limit>
+      </axis>
+      <pose>0 0 0 1.5708 0 0</pose>
+    </joint>
+    <joint name="left_inferior_eyelid_joint" type="revolute">
+      <parent>head_link</parent>
+      <child>left_inferior_eyelid_link</child>
+      <axis>
+        <xyz>0 0 1.0</xyz>
+        <limit>
+          <lower>-0.17453</lower>
+          <upper>0.7854</upper>
+          <effort>1.0</effort>
+          <velocity>10</velocity>
+        </limit>
+      </axis>
+      <pose>0.09208 -0.08718 -0.0824 -3.14159 -0.06113 0</pose>
+    </joint>
+    <joint name="left_rotacional_eyebrow_joint" type="revolute">
+      <parent>left_vertical_eyebrow_link</parent>
+      <child>left_rotacional_eyebrow_link</child>
+      <axis>
+        <xyz>0 0 1.0</xyz>
+        <limit>
+          <lower>-0.17453</lower>
+          <upper>0.4</upper>
+          <effort>1.0</effort>
+          <velocity>10</velocity>
+        </limit>
+      </axis>
+      <pose>0 0 0 2e-05 1.57091 6e-05</pose>
+    </joint>
+    <joint name="left_superior_eyelid_joint" type="revolute">
+      <parent>head_link</parent>
+      <child>left_superior_eyelid_link</child>
+      <axis>
+        <xyz>0 0 1.0</xyz>
+        <limit>
+          <lower>-0.17453</lower>
+          <upper>0.4</upper>
+          <effort>1.0</effort>
+          <velocity>10</velocity>
+        </limit>
+      </axis>
+      <pose>0.09123 -0.0871 -0.04284 0 0.06113 0</pose>
+    </joint>
+    <joint name="left_vertical_eyebrow_joint" type="prismatic">
+      <parent>head_link</parent>
+      <child>left_vertical_eyebrow_link</child>
+      <axis>
+        <xyz>0 0 1.0</xyz>
+        <limit>
+          <lower>0</lower>
+          <upper>0.02</upper>
+          <effort>1.0</effort>
+          <velocity>10</velocity>
+        </limit>
+      </axis>
+      <pose>0.1119 -0.12427 -0.0587 1.5708 0 -0.00012</pose>
+    </joint>
+    <joint name="right_rotacional_eyebrow_joint" type="revolute">
+      <parent>right_vertical_eyebrow_link</parent>
+      <child>right_rotacional_eyebrow_link</child>
+      <axis>
+        <xyz>0 0 1.0</xyz>
+        <limit>
+          <lower>-0.4</lower>
+          <upper>0.17453</upper>
+          <effort>1.0</effort>
+          <velocity>10</velocity>
+        </limit>
+      </axis>
+      <pose>0 0 0 0 1.5708 0</pose>
+    </joint>
+    <joint name="right_vertical_eyebrow_joint" type="prismatic">
+      <parent>head_link</parent>
+      <child>right_vertical_eyebrow_link</child>
+      <axis>
+        <xyz>0 0 1.0</xyz>
+        <limit>
+          <lower>0</lower>
+          <upper>0.02</upper>
+          <effort>1.0</effort>
+          <velocity>10</velocity>
+        </limit>
+      </axis>
+      <pose>0.1119 -0.12289 0.01565 1.5708 0 0</pose>
+    </joint>
+    <joint name="right_eye_horizontal_joint" type="revolute">
+      <parent>head_link</parent>
+      <child>right_eye_horizontal_link</child>
+      <axis>
+        <xyz>0 0 1.0</xyz>
+        <limit>
+          <lower>-0.27453</lower>
+          <upper>0.4</upper>
+          <effort>1.0</effort>
+          <velocity>10</velocity>
+        </limit>
+      </axis>
+      <pose>0.09352 -0.08739 0.01605 1.5708 0 0</pose>
+    </joint>
+    <joint name="right_eye_vertical_joint" type="revolute">
+      <parent>right_eye_horizontal_link</parent>
+      <child>right_eye_vertical_link</child>
+      <axis>
+        <xyz>0 0 1.0</xyz>
+        <limit>
+          <lower>-0.2</lower>
+          <upper>0.7854</upper>
+          <effort>1.0</effort>
+          <velocity>10</velocity>
+        </limit>
+      </axis>
+      <pose>0 0 0 1.5708 0 0</pose>
+    </joint>
+    <joint name="right_inferior_eyelid_joint" type="revolute">
+      <parent>head_link</parent>
+      <child>right_inferior_eyelid_link</child>
+      <axis>
+        <xyz>0 0 1.0</xyz>
+        <limit>
+          <lower>-0.17</lower>
+          <upper>0.7854</upper>
+          <effort>1.0</effort>
+          <velocity>10</velocity>
+        </limit>
+      </axis>
+      <pose>0.09188 -0.08649 -0.00398 -3.14159 0 0</pose>
+    </joint>
+    <joint name="right_superior_eyelid_joint" type="revolute">
+      <parent>head_link</parent>
+      <child>right_superior_eyelid_link</child>
+      <axis>
+        <xyz>0 0 1.0</xyz>
+        <limit>
+          <lower>-0.4</lower>
+          <upper>0.17</upper>
+          <effort>1.0</effort>
+          <velocity>10</velocity>
+        </limit>
+      </axis>
+      <pose>0.09073 -0.08626 0.03037 0 0 0</pose>
+    </joint>
+    <joint name="vertical_neck_joint" type="revolute">
+      <parent>neck_link</parent>
+      <child>head_link</child>
+      <axis>
+        <xyz>0 0 1.0</xyz>
+        <limit>
+          <lower>0</lower>
+          <upper>0.5</upper>
+          <effort>1.0</effort>
+          <velocity>10</velocity>
+        </limit>
+      </axis>
+      <pose>0.02367 -0.00121 0.01929 -1.5708 0 -1.5708</pose>
+    </joint>
+    <joint name="laser_joint" type="fixed">
+      <parent>base_link</parent>
+      <child>sick_link</child>
+      <pose>0.317 0 0.1355 0 0 0</pose>
+    </joint>
+    <joint name="dorso_head" type="fixed">
+      <parent>dorso_link</parent>
+      <child>head_root</child>
+      <pose>0 0 0.805 0 0 0</pose>
+    </joint>
+    <joint name="camera_turret_pan_joint" type="revolute">
+      <parent>dorso_link</parent>
+      <child>camera_turret_pan_link</child>
+      <axis>
+        <xyz>0 0 1</xyz>
+        <dynamics>
+          <damping>100.0</damping>
+          <friction>100.0</friction>
+        </dynamics>
+        <limit>
+          <lower>-1.57</lower>
+          <upper>1.57</upper>
+          <effort>1</effort>
+          <velocity>1</velocity>
+        </limit>
+      </axis>
+      <pose>0.191 0 0.8180000000000001 0 0 0.3925</pose>
+    </joint>
+    <joint name="camera_turret_tilt_joint" type="revolute">
+      <parent>camera_turret_pan_link</parent>
+      <child>camera_turret_tilt_link</child>
+      <axis>
+        <xyz>0 1 0</xyz>
+        <dynamics>
+          <damping>100.0</damping>
+          <friction>100.0</friction>
+        </dynamics>
+        <limit>
+          <lower>-1.57</lower>
+          <upper>1.57</upper>
+          <effort>1</effort>
+          <velocity>1</velocity>
+        </limit>
+      </axis>
+      <pose>0 0 0.05 0 0 0</pose>
+    </joint>
+    <joint name="astra2_top_camera_base_joint" type="fixed">
+      <parent>camera_turret_tilt_link</parent>
+      <child>astra2_top_camera_base_link</child>
+      <pose>0.06705 0 -0.00425 0 0 -0.5235987755982988</pose>
+    </joint>
+    <joint name="astra2_top_camera_sensor_joint" type="fixed">
+      <parent>astra2_top_camera_base_link</parent>
+      <child>astra2_top_camera_link</child>
+      <pose>0.033 0.022 0 0 0 0</pose>
+    </joint>
+    <joint name="astra2_top_camera_sensor_joint_optical_frame" type="fixed">
+      <parent>astra2_top_camera_link</parent>
+      <child>astra2_top_camera_optical_frame</child>
+      <pose>0 0 0 -1.5707963267948966 0 -1.5707963267948966</pose>
+    </joint>
+    <joint name="dorso_joint" type="fixed">
+      <parent>base_link</parent>
+      <child>dorso_link</child>
+      <pose>-0.10900000000000001 0 0.1155 0 0 0</pose>
+    </joint>
+    <joint name="arm_support_joint" type="fixed">
+      <parent>dorso_link</parent>
+      <child>arm_support_link</child>
+      <pose>0.3035 0 0.34 0 0 0</pose>
+    </joint>
+    <joint name="hokuyo_ground_joint" type="fixed">
+      <parent>base_link</parent>
+      <child>hokuyo_ground_link</child>
+      <pose>0.29100000000000004 0 -0.0955 3.14 0 0</pose>
+    </joint>
+    <joint name="hokuyo_back_joint" type="fixed">
+      <parent>base_link</parent>
+      <child>hokuyo_back_link</child>
+      <pose>-0.29100000000000004 0 -0.0955 3.14 0 3.14</pose>
+    </joint>
+    <joint name="imu_joint" type="fixed">
+      <parent>base_link</parent>
+      <child>imu_link</child>
+      <pose>-0.01 0 -0.0955 -0.014161 -0.0203861 0</pose>
+    </joint>
+    <joint name="arm_support_arm_base" type="fixed">
+      <parent>arm_support_link</parent>
+      <child>wx200/base_link</child>
+      <pose>0.1 0 0.0235 0 0 0</pose>
+    </joint>
+    <joint name="astra2_wrist_camera_base_joint" type="fixed">
+      <parent>wx200/gripper_bar_link</parent>
+      <child>astra2_wrist_camera_base_link</child>
+      <pose>-0.078 0.0 0.05 0 0 0</pose>
+    </joint>
+    <joint name="astra2_wrist_camera_sensor_joint" type="fixed">
+      <parent>astra2_wrist_camera_base_link</parent>
+      <child>astra2_wrist_camera_link</child>
+      <pose>0.033 0.022 0 0 0 0</pose>
+    </joint>
+    <joint name="astra2_wrist_camera_sensor_joint_optical_frame" type="fixed">
+      <parent>astra2_wrist_camera_link</parent>
+      <child>astra2_wrist_camera_optical_frame</child>
+      <pose>0 0 0 -1.5707963267948966 0 -1.5707963267948966</pose>
+    </joint>
+    <joint name="waist" type="revolute">
+      <parent>wx200/base_link</parent>
+      <child>wx200/shoulder_link</child>
+      <axis>
+        <xyz>0 0 1</xyz>
+        <dynamics>
+          <damping>0.1</damping>
+          <friction>0.1</friction>
+        </dynamics>
+        <limit>
+          <lower>-3.141582653589793</lower>
+          <upper>3.141582653589793</upper>
+          <effort>8</effort>
+          <velocity>3.141592653589793</velocity>
+        </limit>
+      </axis>
+      <pose>0 0 0.072 0 0 0</pose>
+    </joint>
+    <joint name="shoulder" type="revolute">
+      <parent>wx200/shoulder_link</parent>
+      <child>wx200/upper_arm_link</child>
+      <axis>
+        <xyz>0 1 0</xyz>
+        <dynamics>
+          <damping>0.1</damping>
+          <friction>0.1</friction>
+        </dynamics>
+        <limit>
+          <lower>-1.8849555921538759</lower>
+          <upper>1.9722220547535925</upper>
+          <effort>18</effort>
+          <velocity>1</velocity>
+        </limit>
+      </axis>
+      <pose>0 0 0.03865 0 0 0</pose>
+    </joint>
+    <joint name="elbow" type="revolute">
+      <parent>wx200/upper_arm_link</parent>
+      <child>wx200/forearm_link</child>
+      <axis>
+        <xyz>0 1 0</xyz>
+        <dynamics>
+          <damping>0.1</damping>
+          <friction>0.1</friction>
+        </dynamics>
+        <limit>
+          <lower>-1.8849555921538759</lower>
+          <upper>1.6231562043547265</upper>
+          <effort>13</effort>
+          <velocity>3.141592653589793</velocity>
+        </limit>
+      </axis>
+      <pose>0.05 0 0.2 0 0 0</pose>
+    </joint>
+    <joint name="wrist_angle" type="revolute">
+      <parent>wx200/forearm_link</parent>
+      <child>wx200/wrist_link</child>
+      <axis>
+        <xyz>0 1 0</xyz>
+        <dynamics>
+          <damping>0.1</damping>
+          <friction>0.1</friction>
+        </dynamics>
+        <limit>
+          <lower>-1.7453292519943295</lower>
+          <upper>2.1467549799530254</upper>
+          <effort>5</effort>
+          <velocity>3.141592653589793</velocity>
+        </limit>
+      </axis>
+      <pose>0.2 0 0 0 0 0</pose>
+    </joint>
+    <joint name="wrist_rotate" type="revolute">
+      <parent>wx200/wrist_link</parent>
+      <child>wx200/gripper_link</child>
+      <axis>
+        <xyz>1 0 0</xyz>
+        <dynamics>
+          <damping>0.1</damping>
+          <friction>0.1</friction>
+        </dynamics>
+        <limit>
+          <lower>-3.141582653589793</lower>
+          <upper>3.141582653589793</upper>
+          <effort>1</effort>
+          <velocity>3.141592653589793</velocity>
+        </limit>
+      </axis>
+      <pose>0.065 0 0 0 0 0</pose>
+    </joint>
+    <joint name="ee_arm" type="fixed">
+      <parent>wx200/gripper_link</parent>
+      <child>wx200/ee_arm_link</child>
+      <axis>
+        <xyz>1 0 0</xyz>
+      </axis>
+      <pose>0.043 0 0 0 0 0</pose>
+    </joint>
+    <joint name="gripper" type="continuous">
+      <parent>wx200/ee_arm_link</parent>
+      <child>wx200/gripper_prop_link</child>
+      <axis>
+        <xyz>1 0 0</xyz>
+        <dynamics>
+          <damping>0.1</damping>
+          <friction>0.1</friction>
+        </dynamics>
+        <limit>
+          <effort>1</effort>
+          <velocity>3.141592653589793</velocity>
+        </limit>
+      </axis>
+      <pose>0.0055 0 0 0 0 0</pose>
+    </joint>
+    <joint name="gripper_bar" type="fixed">
+      <parent>wx200/ee_arm_link</parent>
+      <child>wx200/gripper_bar_link</child>
+      <axis>
+        <xyz>1 0 0</xyz>
+      </axis>
+      <pose>0 0 0 0 0 0</pose>
+    </joint>
+    <joint name="ee_bar" type="fixed">
+      <parent>wx200/gripper_bar_link</parent>
+      <child>wx200/fingers_link</child>
+      <axis>
+        <xyz>1 0 0</xyz>
+      </axis>
+      <pose>0.023 0 0 0 0 0</pose>
+    </joint>
+    <joint name="left_finger" type="prismatic">
+      <parent>wx200/fingers_link</parent>
+      <child>wx200/left_finger_link</child>
+      <axis>
+        <xyz>0 1 0</xyz>
+        <dynamics>
+          <damping>0.1</damping>
+          <friction>0.1</friction>
+        </dynamics>
+        <limit>
+          <lower>0.015</lower>
+          <upper>0.037</upper>
+          <effort>5</effort>
+          <velocity>1</velocity>
+        </limit>
+      </axis>
+      <pose>0 0 0 0 0 0</pose>
+    </joint>
+    <joint name="right_finger" type="prismatic">
+      <parent>wx200/fingers_link</parent>
+      <child>wx200/right_finger_link</child>
+      <axis>
+        <xyz>0 1 0</xyz>
+        <dynamics>
+          <damping>0.1</damping>
+          <friction>0.1</friction>
+        </dynamics>
+        <limit>
+          <lower>-0.037</lower>
+          <upper>-0.015</upper>
+          <effort>5</effort>
+          <velocity>1</velocity>
+        </limit>
+      </axis>
+      <pose>0 0 0 0 0 0</pose>
+    </joint>
+    <joint name="ee_gripper" type="fixed">
+      <parent>wx200/fingers_link</parent>
+      <child>wx200/ee_gripper_link</child>
+      <axis>
+        <xyz>1 0 0</xyz>
+      </axis>
+      <pose>0.027575 0 0 0 0 0</pose>
+    </joint>
+  </model>
+</sdf>

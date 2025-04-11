@@ -3,6 +3,7 @@ import launch
 from launch import LaunchDescription
 from launch.actions import DeclareLaunchArgument, RegisterEventHandler, SetEnvironmentVariable
 from launch.event_handlers import OnProcessExit
+import launch.launch_description_sources
 from launch_ros.actions import Node
 from launch_ros.substitutions import FindPackageShare
 from launch.substitutions import EnvironmentVariable
@@ -46,86 +47,125 @@ from interbotix_xs_modules.xs_common import (
 
 def generate_launch_description():
     # Set ignition resource path
-    gz_resource_path_env_var = SetEnvironmentVariable(
-        name='GAZEBO_MODEL_PATH',
+    '''ign_gz_resource_path_env_var = SetEnvironmentVariable(
+        name='IGN_GAZEBO_RESOURCE_PATH',
         value=[
-            EnvironmentVariable('GAZEBO_MODEL_PATH', default_value=''),
-            '/usr/share/gazebo-11/models/',
-            ':',
-            str(Path(get_package_share_directory('interbotix_common_sim')).parent.resolve()),
+            EnvironmentVariable('IGN_GAZEBO_RESOURCE_PATH', default_value=''),
+            '/home/fbot/.gazebo/models/',
+            str(Path(get_package_share_directory('boris_description')).parent.resolve()),
+            str(Path(get_package_share_directory('hector_models')).parent.resolve()),
+            str(os.path.join(get_package_share_directory('fbot_simulation'), 'models')),
             str(Path(get_package_share_directory('interbotix_xsarm_descriptions')).parent.resolve())
         ]
-    )
-
-    # Set GAZEBO_MODEL_URI to empty string to prevent Gazebo from downloading models
-    gz_model_uri_env_var = SetEnvironmentVariable(
-        name='GAZEBO_MODEL_URI',
-        value=['']
-    )
-
-    # Set GAZEBO_MODEL_DATABASE_URI to empty string to prevent Gazebo from downloading models
-    gz_model_uri_env_var = SetEnvironmentVariable(
-        name='GAZEBO_MODEL_DATABASE_URI',
-        value=['']
-    )
-    hardware_type = DeclareLaunchArgument('hardware_type', default_value='gz_classic')
-
-    simulation_package = get_package_share_directory('fbot_simulation')
-    world_path = DeclareLaunchArgument('world_file_path', default_value=os.path.join(simulation_package, 'worlds', 'arena_env.world'))
-    boris_description_package = get_package_share_directory('boris_description')
-    robot_model = DeclareLaunchArgument(
-            'robot_model',
-            default_value='wx200',
-            choices=get_interbotix_xsarm_models(),
-            description='model type of the Interbotix Arm such as `wx200` or `rx150`.'
-        )
-    use_world_frame = DeclareLaunchArgument('use_world_frame', default_value='false')
-    external_urdf_loc = DeclareLaunchArgument('external_urdf_loc', default_value=os.path.join(boris_description_package, 'urdf', 'boris_arm.xacro'))
-    moveit_package = get_package_share_directory('interbotix_xsarm_moveit')
-    moveit_simulation = launch.actions.IncludeLaunchDescription(
+    )'''
+    ign_package = get_package_share_directory('ros_gz_sim')
+    ign_sim = launch.actions.IncludeLaunchDescription(
         launch.launch_description_sources.PythonLaunchDescriptionSource(
-            os.path.join(moveit_package, 'launch', 'xsarm_moveit.launch.py')
+            os.path.join(ign_package, 'launch', 'gz_sim.launch.py')
         ),
         launch_arguments={
-            'world_filepath': LaunchConfiguration('world_file_path'),
-            'use_world_frame': LaunchConfiguration('use_world_frame'),
-            'external_urdf_loc': LaunchConfiguration('external_urdf_loc'),
-            'robot_model': LaunchConfiguration('robot_model'),
-            'robot_name': LaunchConfiguration('robot_model'),
-            'hardware_type': LaunchConfiguration('hardware_type'),
+            'gz_args': "-r -v4 " + str(os.path.join(get_package_share_directory('fbot_simulation'), 'worlds', 'arena_env.world')),
+            'on_exit_shutdown': 'true'
         }.items()
+    )
+    robot_description = ParameterValue(
+        Command(['xacro ', str(os.path.join(get_package_share_directory('boris_description'), 'urdf', 'boris_full.xacro'))]), value_type=str
+    )
+    robot_controllers = PathJoinSubstitution(
+        [
+            FindPackageShare('interbotix_xsarm_sim'),
+            'config',
+            'trajectory_controllers',
+            'wx200_trajectory_controllers.yaml'
+        ]
+    )
+    joint_state_broadcaster_spawner = Node(
+        package='controller_manager',
+        executable='spawner',
+        arguments=['joint_state_broadcaster'],
+        #namespace='/wx200'
+    )
+    joint_trajectory_controller_spawner = Node(
+        package='controller_manager',
+        executable='spawner',
+        arguments=[
+            'arm_controller',
+            'gripper_controller',
+            '--param-file',
+            robot_controllers,
+            ],
+        #namespace='/wx200'
+    )
+    ign_create_robot = Node(
+        package='ros_gz_sim',
+        executable='create',
+        name='create_robot',
+        arguments=[
+            '-param', 'robot_description',
+            '-y', '1.0',
+            '-z', '0.1'
+        ],
+        parameters=[{
+            'robot_description': robot_description,
+        }],
+    )
+    robot_state_publisher_node = Node(
+        package='robot_state_publisher',
+        executable='robot_state_publisher',
+        parameters=[{
+            'robot_description': robot_description,
+            'use_sim_time': True,
+        }],
+        #namespace='/wx200',
+        output={'both': 'screen'},
+    )
+
+    joint_state_publisher_node = Node(
+        package='joint_state_publisher',
+        executable='joint_state_publisher',
+        #namespace='/wx200',
+        parameters=[{
+            'use_sim_time': True,
+        }],
+        output={'both': 'log'},
+    )
+    gz_bridge = Node(
+        package='ros_gz_bridge',
+        executable='parameter_bridge',
+        name='ign_bridge',
+        arguments=[
+            #"/clock@rosgraph_msgs/msg/Clock[gz.msgs.Clock"
+            "/cmd_vel@geometry_msgs/msg/Twist@gz.msgs.Twist",
+            "/odom@nav_msgs/msg/Odometry@gz.msgs.Odometry",
+            "/scan@sensor_msgs/msg/LaserScan@gz.msgs.LaserScan",
+            "/back/scan@sensor_msgs/msg/LaserScan@gz.msgs.LaserScan",
+            "/ground/scan@sensor_msgs/msg/LaserScan@gz.msgs.LaserScan",
+            "/tf@tf2_msgs/msg/TFMessage@gz.msgs.Pose_V",
+            "/wx200/astra2_top_camera/depth/camera_info@sensor_msgs/msg/CameraInfo@gz.msgs.CameraInfo",
+            "/wx200/astra2_top_camera/rgb/camera_info@sensor_msgs/msg/CameraInfo@gz.msgs.CameraInfo",
+            "/wx200/astra2_wrist_camera/rgb/camera_info@sensor_msgs/msg/CameraInfo@gz.msgs.CameraInfo",
+        ],
+        output="screen"
+    )
+    image_gz_bridge = Node(
+        package='ros_gz_image',
+        executable='image_bridge',
+        arguments=[
+            '/wx200/astra2_top_camera/rgb/image_raw',
+            '/wx200/astra2_top_camera/depth/image_raw',
+            '/wx200/astra2_wrist_camera/rgb/image_raw',
+        ],
+        output='screen',
     )
     navigation = IncludeLaunchDescription(
         PythonLaunchDescriptionSource(os.path.join(get_package_share_directory('nav2_bringup'), 'launch', 'bringup_launch.py')),
         launch_arguments={
-            'autostart': 'true',
+            'use_sim_time': 'false',
+            'autostart': 'True',
             'map': os.path.join(get_package_share_directory('fbot_navigation'), 'maps', 'arena_env.yaml'),
+            'params_file': os.path.join(get_package_share_directory('fbot_navigation'), 'param', 'tb3_nav2_params.yaml'),
             'slam': 'False',
         }.items()
-    )
-    cmd_vel_relay = Node(
-        package='topic_tools',
-        executable='relay',
-        name='relay_cmd_vel',
-        arguments=[
-            '/cmd_vel', '/wx200/cmd_vel'
-        ]
-    )
-    odom_relay = Node(
-        package='topic_tools',
-        executable='relay',
-        name='relay_odom',
-        arguments=[
-            '/wx200/odom', '/odom'
-        ]
-    )
-    description_relay = Node(
-        package='topic_tools',
-        executable='relay',
-        name='relay_description',
-        arguments=[
-            '/wx200/robot_description', '/robot_description'
-        ]
     )
     scan_relay = Node(
         package='topic_tools',
@@ -135,12 +175,31 @@ def generate_launch_description():
             '/lms1xx/scan', '/scan'
         ]
     )
-    static_transform = Node(
+    '''static_transform = Node(
         package='tf2_ros',
         executable='static_transform_publisher',
         name='static_transform_publisher',
         arguments=[
-            '0', '0', '0', '0', '0', '0', 'map', 'odom'
+            '0', '0', '0', '0', '0', '0', 'world', 'map'
         ]
+    )'''
+    rviz = Node(
+        package="rviz2",
+        executable="rviz2",
+        name="rviz2"
     )
-    return LaunchDescription([gz_resource_path_env_var, gz_model_uri_env_var, hardware_type, use_world_frame, external_urdf_loc, robot_model, world_path, moveit_simulation, cmd_vel_relay, odom_relay, description_relay, scan_relay, static_transform, navigation])
+    return LaunchDescription([
+        #ign_gz_resource_path_env_var,
+        ign_sim,
+        ign_create_robot,
+        robot_state_publisher_node,
+        joint_state_publisher_node,
+        joint_state_broadcaster_spawner,
+        joint_trajectory_controller_spawner, 
+        gz_bridge,
+        image_gz_bridge,
+        navigation,
+        scan_relay,
+        #static_transform,
+        rviz
+    ])
