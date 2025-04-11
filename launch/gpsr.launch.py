@@ -134,9 +134,9 @@ def generate_launch_description():
         executable='parameter_bridge',
         name='ign_bridge',
         arguments=[
-            #"/clock@rosgraph_msgs/msg/Clock[gz.msgs.Clock"
+            #"/clock@rosgraph_msgs/msg/Clock@gz.msgs.Clock"
             "/cmd_vel@geometry_msgs/msg/Twist@gz.msgs.Twist",
-            "/odom@nav_msgs/msg/Odometry@gz.msgs.Odometry",
+            "/hoverboard_base_controller/odom@nav_msgs/msg/Odometry@gz.msgs.Odometry",
             "/scan@sensor_msgs/msg/LaserScan@gz.msgs.LaserScan",
             "/back/scan@sensor_msgs/msg/LaserScan@gz.msgs.LaserScan",
             "/ground/scan@sensor_msgs/msg/LaserScan@gz.msgs.LaserScan",
@@ -163,7 +163,7 @@ def generate_launch_description():
             'use_sim_time': 'false',
             'autostart': 'True',
             'map': os.path.join(get_package_share_directory('fbot_navigation'), 'maps', 'arena_env.yaml'),
-            'params_file': os.path.join(get_package_share_directory('fbot_navigation'), 'param', 'tb3_nav2_params.yaml'),
+            'params_file': os.path.join(get_package_share_directory('fbot_navigation'), 'param', 'tb3_nav2_params_sim.yaml'),
             'slam': 'False',
         }.items()
     )
